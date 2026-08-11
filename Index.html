@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yanssy Daniela Aguilar López Beauty & Cosmetics</title>
+    <!-- SDK de EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("PJ0Lcyp8M3UKpQB4q");
+        })();
+    </script>
+    <style>
+        :root {
+            --primary-color: #d46a84;
+            --secondary-color: #f8f1f1;
+            --dark-color: #333;
+            --accent-color: #27ae60;
+            --whatsapp-color: #25d366;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfbfb;
+            color: var(--dark-color);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .promo-banner {
+            background-color: #b5526c;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 1.3rem;
+            }
+        }
+
+        .controls {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        select {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .catalog {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #eee;
+        }
+
+        .product-card h3 {
+            font-size: 1.1rem;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .category-tag {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.6rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #b5526c;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .pagination button {
+            background-color: #eee;
+            color: var(--dark-color);
+            padding: 0.5rem 0.8rem;
+        }
+
+        .pagination button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .cart-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        .cart-item-details {
+            font-size: 0.9rem;
+        }
+
+        .free-shipping-msg {
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background-color: #e8f8f0;
+            color: var(--accent-color);
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            margin-top: 1rem;
+            background-color: var(--accent-color);
+        }
+
+        .btn-checkout:hover {
+            background-color: #219150;
+        }
+
+        .btn-whatsapp {
+            width: 100%;
+            margin-top: 0.5rem;
+            background-color: var(--whatsapp-color);
+            color: white;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            padding: 0.6rem 0;
+            border-radius: 5px;
+            font-weight: bold;
+            box-sizing: border-box;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1ebc57;
+        }
+
+        .remove-btn {
+            background: #e74c3c;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .remove-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>YANSSY DANIELA AGUILAR LÓPEZ BEAUTY & COSMETICS</h1>
+    </header>
+    <div class="promo-banner">
+        ¡Envíos gratis en compras mayores a $50.00!
+    </div>
+
+    <div class="container">
+        <main>
+            <div class="controls">
+                <label for="category-filter"><strong>Filtrar por Categoría:</strong></label>
+                <select id="category-filter" onchange="filterProducts()">
+                    <option value="Todas">Todas</option>
+                    <option value="Rostro">Rostro</option>
+                    <option value="Ojos">Ojos</option>
+                    <option value="Labios">Labios</option>
+                    <option value="Ropa">Ropa de Dama</option>
+                    <option value="Accesorios">Accesorios</option>
+                </select>
+            </div>
+
+            <div class="catalog" id="catalog-container"></div>
+
+            <div class="pagination" id="pagination-container"></div>
+        </main>
+
+        <aside class="cart-section">
+            <h2>Carrito de Compras</h2>
+            <div id="cart-items">
+                <p>El carrito está vacío.</p>
+            </div>
+            <hr>
+            <h3>Total: $<span id="cart-total">0.00</span></h3>
+            <div id="shipping-info" class="free-shipping-msg" style="display: none;"></div>
+            
+            <button class="btn-checkout" onclick="checkout()">Finalizar Compra</button>
+            <button class="btn-whatsapp" onclick="sendWhatsApp()">Enviar pedido por WhatsApp</button>
+        </aside>
+    </div>
+
+    <script>
+        const catalogo = [
+            // Rostro
+            { id: 1, nombre: "Base Fluida Cobertura Total", categoria: "Rostro", precio: 28.00 },
+            { id: 2, nombre: "Corrector de Alta Definición", categoria: "Rostro", precio: 16.50 },
+            { id: 3, nombre: "Polvo Traslúcido Matificante", categoria: "Rostro", precio: 22.00 },
+            { id: 4, nombre: "Rubor en Crema Tono Rosa", categoria: "Rostro", precio: 15.00 },
+            { id: 5, nombre: "Iluminador Líquido Rosé Gold", categoria: "Rostro", precio: 19.50 },
+            { id: 6, nombre: "Primer Facial Hidratante", categoria: "Rostro", precio: 21.00 },
+            { id: 7, nombre: "Paleta de Contornos en Polvo", categoria: "Rostro", precio: 26.00 },
+            { id: 8, nombre: "BB Cream Multibeneficios", categoria: "Rostro", precio: 18.00 },
+            { id: 9, nombre: "Serum Facial Preparador", categoria: "Rostro", precio: 24.50 },
+            { id: 10, nombre: "Fijador de Maquillaje Mate", categoria: "Rostro", precio: 20.00 },
+
+            // Ojos
+            { id: 11, nombre: "Paleta de Sombras Nude 18 Tonos", categoria: "Ojos", precio: 35.00 },
+            { id: 12, nombre: "Delineador Líquido Waterproof", categoria: "Ojos", precio: 14.00 },
+            { id: 13, nombre: "Máscara de Pestañas Volumen Extremo", categoria: "Ojos", precio: 18.50 },
+            { id: 14, nombre: "Sombras Individuales Neón", categoria: "Ojos", precio: 9.00 },
+            { id: 15, nombre: "Gel Definidor para Cejas", categoria: "Ojos", precio: 13.00 },
+            { id: 16, nombre: "Lápiz Delineador Khol Negro", categoria: "Ojos", precio: 10.00 },
+            { id: 17, nombre: "Kit de Pestañas Postizas Magnéticas", categoria: "Ojos", precio: 22.00 },
+            { id: 18, nombre: "Sombra Líquida con Escarcha", categoria: "Ojos", precio: 12.50 },
+            { id: 19, nombre: "Primer de Ojos Larga Duración", categoria: "Ojos", precio: 15.50 },
+            { id: 20, nombre: "Plumón Microblading para Cejas", categoria: "Ojos", precio: 16.00 },
+
+            // Labios
+            { id: 21, nombre: "Labial Mate Larga Duración Rojo", categoria: "Labios", precio: 18.00 },
+            { id: 22, nombre: "Brillo Labial Voluminizador", categoria: "Labios", precio: 15.00 },
+            { id: 23, nombre: "Delineador de Labios Tono Nude", categoria: "Labios", precio: 8.50 },
+            { id: 24, nombre: "Tinta de Labios y Mejillas", categoria: "Labios", precio: 12.00 },
+            { id: 25, nombre: "Básamo Hidratante con Color", categoria: "Labios", precio: 9.00 },
+            { id: 26, nombre: "Exfoliante Labial de Frutilla", categoria: "Labios", precio: 11.00 },
+            { id: 27, nombre: "Labial Mágico Tono Rosa", categoria: "Labios", precio: 10.00 },
+            { id: 28, nombre: "Set de 3 Labiales Líquidos", categoria: "Labios", precio: 30.00 },
+            { id: 29, nombre: "Gloss Transparente Espejo", categoria: "Labios", precio: 11.50 },
+            { id: 30, nombre: "Aceite Nutritivo para Labios", categoria: "Labios", precio: 14.00 },
+
+            // Ropa de Dama
+            { id: 31, nombre: "Vestido Elegante de Noche", categoria: "Ropa", precio: 55.00 },
+            { id: 32, nombre: "Blusa Casual Estampada", categoria: "Ropa", precio: 25.00 },
+            { id: 33, nombre: "Pantalón Jean Tiro Alto", categoria: "Ropa", precio: 40.00 },
+            { id: 34, nombre: "Chaqueta de Cuero Sintético", categoria: "Ropa", precio: 65.00 },
+            { id: 35, nombre: "Falda Plisada Midi", categoria: "Ropa", precio: 28.00 },
+            { id: 36, nombre: "Crop Top Tejido a Mano", categoria: "Ropa", precio: 18.00 },
+            { id: 37, nombre: "Conjunto Deportivo 2 Piezas", categoria: "Ropa", precio: 45.00 },
+            { id: 38, nombre: "Suéter Casual Oversize", categoria: "Ropa", precio: 32.00 },
+            { id: 39, nombre: "Vestido Playero Estampado", categoria: "Ropa", precio: 30.00 },
+            { id: 40, nombre: "Pantalón de Vestir Elegante", categoria: "Ropa", precio: 38.00 },
+
+            // Accesorios
+            { id: 41, nombre: "Set Profesional de 12 Brochas", categoria: "Accesorios", precio: 42.00 },
+            { id: 42, nombre: "Bolso de Mano de Cuero", categoria: "Accesorios", precio: 48.00 },
+            { id: 43, nombre: "Gafas de Sol Estilo Cat-Eye", categoria: "Accesorios", precio: 20.00 },
+            { id: 44, nombre: "Espejo LED Táctil Organizador", categoria: "Accesorios", precio: 29.00 },
+            { id: 45, nombre: "Set de Esponjas Blender (4 pzs)", categoria: "Accesorios", precio: 12.00 },
+            { id: 46, nombre: "Cosmetiquera de Viaje Espaciosa", categoria: "Accesorios", precio: 22.00 },
+            { id: 47, nombre: "Rizador de Pestañas Térmico", categoria: "Accesorios", precio: 16.00 },
+            { id: 48, nombre: "Cinturón Dorado Moda Dama", categoria: "Accesorios", precio: 15.00 },
+            { id: 49, nombre: "Aretes Dorados con Perlas", categoria: "Accesorios", precio: 18.00 },
+            { id: 50, nombre: "Collar Elegante Capas", categoria: "Accesorios", precio: 21.00 }
+        ];
+
+        let carrito = [];
+        let currentPage = 1;
+        const itemsPerPage = 10;
+        const miNumeroWhatsApp = "50497097165";
+
+        function getFilteredProducts() {
+            const category = document.getElementById("category-filter").value;
+            return category === "Todas" 
+                ? catalogo 
+                : catalogo.filter(p => p.categoria === category);
+        }
+
+        function displayProducts() {
+            const container = document.getElementById("catalog-container");
+            container.innerHTML = "";
+
+            const filtered = getFilteredProducts();
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const paginatedItems = filtered.slice(startIndex, startIndex + itemsPerPage);
+
+            if (paginatedItems.length === 0) {
+                container.innerHTML = "<p>No hay productos disponibles.</p>";
+                return;
+            }
+
+            paginatedItems.forEach(product => {
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.innerHTML = `
+                    <div>
+                        <div class="category-tag">${product.categoria}</div>
+                        <h3>${product.nombre}</h3>
+                    </div>
+                    <div>
+                        <div class="price">$${product.precio.toFixed(2)}</div>
+                        <button onclick="addToCart(${product.id})">Agregar al Carrito</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            renderPagination(filtered.length);
+        }
+
+        function renderPagination(totalItems) {
+            const paginationContainer = document.getElementById("pagination-container");
+            paginationContainer.innerHTML = "";
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+            if (totalPages <= 1) return;
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement("button");
+                btn.textContent = i;
+                if (i === currentPage) btn.className = "active";
+                btn.onclick = () => {
+                    currentPage = i;
+                    displayProducts();
+                };
+                paginationContainer.appendChild(btn);
+            }
+        }
+
+        function filterProducts() {
+            currentPage = 1;
+            displayProducts();
+        }
+
+        function addToCart(productId) {
+            const product = catalogo.find(p => p.id === productId);
+            const itemInCart = carrito.find(item => item.producto.id === productId);
+
+            if (itemInCart) {
+                itemInCart.cantidad++;
+            } else {
+                carrito.push({ producto: product, cantidad: 1 });
+            }
+
+            updateCartUI();
+        }
+
+        function removeFromCart(productId) {
+            carrito = carrito.filter(item => item.producto.id !== productId);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartContainer = document.getElementById("cart-items");
+            const totalElement = document.getElementById("cart-total");
+            const shippingInfo = document.getElementById("shipping-info");
+
+            if (carrito.length === 0) {
+                cartContainer.innerHTML = "<p>El carrito está vacío.</p>";
+                totalElement.textContent = "0.00";
+                shippingInfo.style.display = "none";
+                return;
+            }
+
+            cartContainer.innerHTML = "";
+            let total = 0;
+
+            carrito.forEach(item => {
+                const subtotal = item.producto.precio * item.cantidad;
+                total += subtotal;
+
+                const cartItem = document.createElement("div");
+                cartItem.className = "cart-item";
+                cartItem.innerHTML = `
+                    <div class="cart-item-details">
+                        <strong>${item.producto.nombre}</strong><br>
+                        ${item.cantidad} x $${item.producto.precio.toFixed(2)} = $${subtotal.toFixed(2)}
+                    </div>
+                    <button class="remove-btn" onclick="removeFromCart(${item.producto.id})">X</button>
+                `;
+                cartContainer.appendChild(cartItem);
+            });
+
+            totalElement.textContent = total.toFixed(2);
+
+            shippingInfo.style.display = "block";
+            if (total >= 50.0) {
+                shippingInfo.textContent = "¡Felicidades! Tienes ENVÍO GRATIS.";
+                shippingInfo.style.backgroundColor = "#e8f8f0";
+                shippingInfo.style.color = "#27ae60";
+            } else {
+                const faltante = (50.0 - total).toFixed(2);
+                shippingInfo.textContent = `Añade $${faltante} más para envío gratis.`;
+                shippingInfo.style.backgroundColor = "#fff3cd";
+                shippingInfo.style.color = "#856404";
+            }
+        }
+
+        function checkout() {
+            if (carrito.length === 0) {
+                alert("El carrito está vacío. Agrega productos antes de pagar.");
+                return;
+            }
+
+            const confirmacion = confirm("¿Desea confirmar su pedido?");
+            if (confirmacion) {
+                let resumen = carrito.map(i => `${i.cantidad}x ${i.producto.nombre} ($${(i.producto.precio * i.cantidad).toFixed(2)})`).join("\n");
+                let total = document.getElementById("cart-total").textContent;
+
+                const templateParams = {
+                    to_email: "deredester00@gmail.com",
+                    pedido_detalle: resumen,
+                    total_compra: total
+                };
+
+                emailjs.send("Service_rrbikxy", "template_hwfmzwv", templateParams)
+                    .then(() => {
+                        alert("¡GRACIAS POR SU COMPRA!\nEl detalle ha sido enviado por correo.");
+                        carrito = [];
+                        updateCartUI();
+                    }, (error) => {
+                        alert("Error al enviar el correo: " + JSON.stringify(error));
+                    });
+            }
+        }
+
+        function sendWhatsApp() {
+            if (carrito.length === 0) {
+                alert("El carrito está vacío.");
+                return;
+            }
+
+            let mensaje = "Hola, me gustaría realizar la siguiente compra en Yanssy Daniela Aguilar López Beauty & Cosmetics:\n\n";
+            carrito.forEach(item => {
+                mensaje += `• ${item.cantidad}x ${item.producto.nombre} - $${(item.producto.precio * item.cantidad).toFixed(2)}\n`;
+            });
+            
+            let total = document.getElementById("cart-total").textContent;
+            mensaje += `\n*Total: $${total}*`;
+
+            const url = `https://wa.me/${miNumeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, "_blank");
+        }
+
+        displayProducts();
+    </script>
+</body>
+</html>
